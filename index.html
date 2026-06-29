@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+  ============================================================
+  FRESHFOLD LAUNDRY - LANDING PAGE
+  Built by: [Your Name] | Learning in public 🚀
+  ============================================================
+
+  HOW THIS FILE IS STRUCTURED:
+  1. <head>   — Settings & linking to CSS
+  2. <body>   — Everything the user sees
+     - SECTION 1: Navigation bar (top menu)
+     - SECTION 2: Hero (big welcome area)
+     - SECTION 3: Trust bar (quick facts)
+     - SECTION 4: Services (what we offer)
+     - SECTION 5: How it works (steps)
+     - SECTION 6: Price calculator
+     - SECTION 7: Reviews
+     - SECTION 8: Booking form
+  3. <script> — All the interactive behavior (JS)
+  ============================================================
+-->
+
+<head>
+  <!-- Tell the browser: this page is in English, use UTF-8 characters -->
+  <meta charset="UTF-8">
+
+  <!-- Make the page look good on mobile phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- The tab title in the browser -->
+  <title>FreshFold Laundry — Clean Clothes, Zero Stress</title>
+
+  <!-- Load icons from the internet (Tabler Icons library) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+  <!-- Link to our CSS file (styles.css is in the same folder) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+       SECTION 1: NAVIGATION BAR
+       The strip at the top with the logo and menu links.
+       "nav" is a special HTML tag for navigation menus.
+  ============================================================ -->
+  <nav class="navbar">
+    <!-- Logo on the left -->
+    <div class="nav-logo">
+      <i class="ti ti-wash"></i>
+      FreshFold
+    </div>
+
+    <!-- Links on the right -->
+    <!-- href="#services" means: jump to the element with id="services" -->
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#calculator">Pricing</a>
+      <a href="#booking" class="nav-cta">Book Pickup</a>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       SECTION 2: HERO
+       The big eye-catching welcome section at the top.
+       Goal: make the visitor feel "yes, this is for me" immediately.
+  ============================================================ -->
+  <section class="hero">
+    <!-- Small label above the headline -->
+    <div class="badge">Lagos Island · Free Pickup &amp; Delivery</div>
+
+    <!-- Main headline — the most important sentence on the page -->
+    <h1>
+      Clean clothes, <span class="highlight">zero stress.</span>
+      <br>Delivered to you.
+    </h1>
+
+    <!-- Supporting description -->
+    <p class="hero-subtitle">
+      Professional laundry, dry cleaning, and ironing —
+      picked up from your door and returned fresh within 24 hours.
+    </p>
+
+    <!-- Two buttons side by side -->
+    <div class="hero-buttons">
+      <!-- onclick="scrollTo('booking')" — runs JS when button is clicked -->
+      <button class="btn-primary" onclick="scrollToSection('booking')">
+        Book a pickup
+      </button>
+      <button class="btn-ghost" onclick="scrollToSection('how-it-works')">
+        See how it works
+      </button>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3: TRUST BAR
+       Four quick facts to build confidence.
+       Visitors decide in 3 seconds if they trust a site.
+       This section answers their silent questions.
+  ============================================================ -->
+  <div class="trust-bar">
+
+    <div class="trust-item">
+      <i class="ti ti-clock"></i>
+      24-hr turnaround
+    </div>
+
+    <div class="trust-item">
+      <i class="ti ti-truck"></i>
+      Free pickup &amp; delivery
+    </div>
+
+    <div class="trust-item">
+      <i class="ti ti-shield-check"></i>
+      Clothes insured
+    </div>
+
+    <div class="trust-item">
+      <i class="ti ti-star"></i>
+      4.9 rating
+    </div>
+
+  </div>
+
+
+  <!-- ============================================================
+       SECTION 4: SERVICES
+       id="services" — this is the anchor for nav links (href="#services")
+       Each card is clickable and shows more details below.
+  ============================================================ -->
+  <section class="section" id="services">
+
+    <p class="section-label">What we offer</p>
+    <h2>Pick your service</h2>
+    <p class="section-desc">Tap any card to see what's included.</p>
+
+    <!-- The grid of 4 service cards -->
+    <div class="services-grid">
+
+      <!--
+        onclick="selectService(this, 0)"
+        When clicked: run the selectService() function
+        "this" = this card element
+        "0"    = index 0 (first item in our JS data array)
+      -->
+      <div class="service-card" onclick="selectService(this, 0)">
+        <i class="ti ti-wash"></i>
+        <h3>Wash &amp; Fold</h3>
+        <p>Everyday clothes, washed, dried, and neatly folded.</p>
+        <div class="card-price">₦800 / kg</div>
+      </div>
+
+      <div class="service-card" onclick="selectService(this, 1)">
+        <i class="ti ti-shirt"></i>
+        <h3>Wash &amp; Iron</h3>
+        <p>Washed, dried, and pressed crisp for office or events.</p>
+        <div class="card-price">₦1,200 / kg</div>
+      </div>
+
+      <div class="service-card" onclick="selectService(this, 2)">
+        <i class="ti ti-diamond"></i>
+        <h3>Dry Cleaning</h3>
+        <p>Suits, gowns, and delicate fabrics treated with care.</p>
+        <div class="card-price">₦3,500 / item</div>
+      </div>
+
+      <div class="service-card" onclick="selectService(this, 3)">
+        <i class="ti ti-home"></i>
+        <h3>Duvet &amp; Bedding</h3>
+        <p>Duvets, pillows, curtains — deep cleaned and fresh.</p>
+        <div class="card-price">₦4,000 / set</div>
+      </div>
+
+    </div>
+
+    <!-- This panel is HIDDEN by default. JS shows it when a card is clicked. -->
+    <div class="detail-panel" id="detail-panel">
+      <h4 id="detail-title">Title goes here</h4>
+      <p id="detail-desc">Description goes here</p>
+      <!-- Tags like "Suits", "Lace", "Silk" appear here -->
+      <ul id="detail-tags"></ul>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 5: HOW IT WORKS
+       A 4-step process. Each step expands when clicked.
+       This tells the story of the customer journey.
+  ============================================================ -->
+  <section class="section how-section" id="how-it-works">
+
+    <p class="section-label">The process</p>
+    <h2>How it works</h2>
+    <p class="section-desc">Tap each step to learn more.</p>
+
+    <div class="steps-list">
+
+      <!--
+        onclick="toggleStep(this)"
+        "this" means "the div that was clicked"
+        JS will add or remove the "active" class to show/hide details
+      -->
+
+      <div class="step" onclick="toggleStep(this)">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>Book a pickup</h4>
+          <p>Choose a time that works for you — we come to you.</p>
+          <!-- This paragraph is hidden until the step is clicked -->
+          <p class="step-detail">
+            You can book same-day if you order before 11am.
+            We'll send you a confirmation by WhatsApp.
+          </p>
+        </div>
+      </div>
+
+      <div class="step" onclick="toggleStep(this)">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>We collect your clothes</h4>
+          <p>A rider picks up your laundry bag at your door.</p>
+          <p class="step-detail">
+            We weigh your clothes at pickup and send you a final
+            invoice before processing. No surprises.
+          </p>
+        </div>
+      </div>
+
+      <div class="step" onclick="toggleStep(this)">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>Cleaned &amp; processed</h4>
+          <p>Your items are washed, treated, and quality-checked.</p>
+          <p class="step-detail">
+            We sort by color and fabric type. Delicate items are
+            always handled separately with gentle detergent.
+          </p>
+        </div>
+      </div>
+
+      <div class="step" onclick="toggleStep(this)">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h4>Delivered back to you</h4>
+          <p>Fresh and folded, back at your door within 24 hours.</p>
+          <p class="step-detail">
+            Evening delivery between 5–8pm. You'll get a WhatsApp
+            message 30 minutes before the rider arrives.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 6: PRICE CALCULATOR
+       A dropdown + slider that calculates cost live.
+       The JS reads these inputs and updates the total in real time.
+  ============================================================ -->
+  <section class="section calc-section" id="calculator">
+
+    <p class="section-label">Estimate your cost</p>
+    <h2>Price calculator</h2>
+    <p class="section-desc">Get a rough estimate before you book.</p>
+
+    <div class="calc-box">
+
+      <!--
+        <select> = a dropdown menu
+        onchange="calcPrice()" = run calcPrice() when user picks a new option
+      -->
+      <select id="calc-service" onchange="calcPrice()">
+        <option value="wash">Wash &amp; Fold — ₦800 / kg</option>
+        <option value="iron">Wash &amp; Iron — ₦1,200 / kg</option>
+        <option value="dry">Dry Cleaning — ₦3,500 / item</option>
+        <option value="duvet">Duvet &amp; Bedding — ₦4,000 / set</option>
+      </select>
+
+      <div class="slider-row">
+        <!-- This label changes with JS (e.g. "Weight (kg)" or "Quantity (items)") -->
+        <label id="calc-label">Weight (kg)</label>
+
+        <!--
+          type="range" = a sliding control
+          min/max = limits
+          value = starting position
+          oninput = runs every time slider moves
+        -->
+        <input
+          type="range"
+          id="calc-slider"
+          min="1"
+          max="20"
+          value="5"
+          step="1"
+          oninput="calcPrice()"
+        >
+
+        <!-- Shows the current slider number, updated by JS -->
+        <span id="calc-value">5 kg</span>
+      </div>
+
+      <!-- Result display — the JS writes the price into #calc-total -->
+      <div class="calc-result">
+        <p>Estimated total</p>
+        <div class="calc-total" id="calc-total">₦4,000</div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 7: REVIEWS / TESTIMONIALS
+       Social proof. People trust other people more than they trust brands.
+       Use initials avatars when you don't have real photos.
+  ============================================================ -->
+  <section class="section reviews-section">
+
+    <p class="section-label">Reviews</p>
+    <h2>What customers say</h2>
+    <p class="section-desc">From people in Lagos who switched to FreshFold.</p>
+
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <!-- Five gold star characters -->
+        <div class="stars">★★★★★</div>
+        <p>
+          My suits came back looking better than when I took them to
+          the dry cleaner myself. Pickup was on time and the rider
+          was polite.
+        </p>
+        <div class="reviewer">
+          <div class="avatar">TK</div>
+          <span>Tunde K., VI</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>
+          I do bulk laundry every two weeks and FreshFold has saved me
+          so much time. The WhatsApp updates are a nice touch.
+        </p>
+        <div class="reviewer">
+          <div class="avatar">AO</div>
+          <span>Amaka O., Lekki</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★☆</div>
+        <p>
+          Great service. My duvet was cleaned properly for the first
+          time. I'd recommend the bedding package to any family.
+        </p>
+        <div class="reviewer">
+          <div class="avatar">FD</div>
+          <span>Fatima D., Ikoyi</span>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 8: BOOKING FORM
+       The final action section. Simple fields the user fills in.
+       JS validates (checks) and then shows a success message.
+  ============================================================ -->
+  <section class="booking-section" id="booking">
+
+    <h2>Ready for fresh clothes?</h2>
+    <p>Book your first pickup in 30 seconds. No app needed.</p>
+
+    <div class="booking-form" id="booking-form">
+
+      <!-- type="text" = a normal text input field -->
+      <input type="text" id="b-name" placeholder="Your full name">
+      <input type="text" id="b-phone" placeholder="Phone / WhatsApp number">
+      <input type="text" id="b-address" placeholder="Your address">
+
+      <!-- Dropdown to choose service -->
+      <select id="b-service">
+        <option value="">— Choose a service —</option>
+        <option>Wash &amp; Fold</option>
+        <option>Wash &amp; Iron</option>
+        <option>Dry Cleaning</option>
+        <option>Duvet &amp; Bedding</option>
+      </select>
+
+      <!-- onclick calls our submitBooking() function -->
+      <button class="btn-book" onclick="submitBooking()">
+        Book my pickup
+      </button>
+
+      <!-- Hidden success message — JS shows this after form is submitted -->
+      <div class="success-msg" id="success-msg">
+        <i class="ti ti-circle-check"></i>
+        Booking received! We'll confirm on WhatsApp shortly.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       JAVASCRIPT — All the interactive behavior
+       This goes at the BOTTOM of the body, so the HTML loads first.
+  ============================================================ -->
+  <script src="script.js"></script>
+
+</body>
+</html>
